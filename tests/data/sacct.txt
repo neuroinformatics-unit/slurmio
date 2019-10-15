@@ -1,0 +1,3 @@
+JobID|JobIDRaw|JobName|Partition|MaxVMSize|MaxVMSizeNode|MaxVMSizeTask|AveVMSize|MaxRSS|MaxRSSNode|MaxRSSTask|AveRSS|MaxPages|MaxPagesNode|MaxPagesTask|AvePages|MinCPU|MinCPUNode|MinCPUTask|AveCPU|NTasks|AllocCPUS|Elapsed|State|ExitCode|AveCPUFreq|ReqCPUFreqMin|ReqCPUFreqMax|ReqCPUFreqGov|ReqMem|ConsumedEnergy|MaxDiskRead|MaxDiskReadNode|MaxDiskReadTask|AveDiskRead|MaxDiskWrite|MaxDiskWriteNode|MaxDiskWriteTask|AveDiskWrite|AllocGRES|ReqGRES|ReqTRES|AllocTRES
+606501|606501|test_slurm_job|gpu||||||||||||||||||24|00:00:17|RUNNING|0:0||Unknown|Unknown|Unknown|14000Mc||||||||||gpu:1|gpu:1|cpu=12,mem=168000,node=1|cpu=24,mem=336000,node=1
+
