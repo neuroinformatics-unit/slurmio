@@ -1,12 +1,12 @@
 # slurmio
 Python tools to interface with slurm.
 
-###Install with:
+### Install with:
 ```bash
 pip install slurmio
 ```
 
-###Usage
+### Usage
 ```bash
 >>> from slurmio.slurmio import SlurmJobParameters
 >>> SlurmJobParameters().job_id
