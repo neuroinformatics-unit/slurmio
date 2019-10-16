@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="slurmio",
-    version="0.0.1",
+    version="0.0.2",
     author="Adam Tyson",
     author_email="adam.tyson@ucl.ac.uk",
     description="Python tools to interface with slurm",
