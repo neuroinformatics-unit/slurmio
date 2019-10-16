@@ -16,16 +16,17 @@ matrix:
     env: PIP_CMD='pip install -e .[dev]' TEST_CMD='tests/travis/testing.sh'
 
 before_install:
+  - sudo apt-get update
   - wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - source "$HOME/miniconda/etc/profile.d/conda.sh"
   - hash -r
-  - conda update -q --yes conda
   - conda config --set always_yes yes --set changeps1 no
-  - conda info -a
+  - conda update -q conda
 
 install:
-  - conda create -n test-environment python=$TRAVIS_PYTHON_VERSION
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
   - source activate test-environment
   - $PIP_CMD
   - conda info -a
