@@ -1,3 +1,7 @@
+[![Travis](https://img.shields.io/travis/com/adamltyson/slurmio?label=Travis%20CI)](
+    https://travis-ci.com/adamltyson/slurmio)
+
+
 # slurmio
 Python tools to interface with slurm.
 
