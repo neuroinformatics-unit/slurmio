@@ -32,6 +32,9 @@ install:
 script:
   - travis_wait 40 bash $TEST_CMD
 
+after_success:
+  - coveralls
+
 notifications:
   email:
     recipients:
