@@ -1,6 +1,6 @@
 [![Travis](https://img.shields.io/travis/com/adamltyson/slurmio?label=Travis%20CI)](
     https://travis-ci.com/adamltyson/slurmio)
-
+[![Coverage Status](https://coveralls.io/repos/github/adamltyson/slurmio/badge.svg?branch=master)](https://coveralls.io/github/adamltyson/slurmio?branch=master)
 
 # slurmio
 Python tools to interface with slurm.
