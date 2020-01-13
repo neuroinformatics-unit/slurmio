@@ -5,7 +5,7 @@ requirements = ["luddite"]
 
 setuptools.setup(
     name="slurmio",
-    version="0.0.4",
+    version="0.0.5",
     author="Adam Tyson",
     author_email="adam.tyson@ucl.ac.uk",
     description="Python tools to interface with slurm",
