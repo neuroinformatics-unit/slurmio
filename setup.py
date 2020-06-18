@@ -1,7 +1,5 @@
 import setuptools
 
-requirements = ["luddite"]
-
 
 setuptools.setup(
     name="slurmio",
@@ -9,15 +7,8 @@ setuptools.setup(
     author="Adam Tyson",
     author_email="adam.tyson@ucl.ac.uk",
     description="Python tools to interface with slurm",
-    install_requires=requirements,
     extras_require={
-        "dev": [
-            "black",
-            "pytest-cov",
-            "pytest",
-            "coveralls",
-            "coverage<=4.5.4",
-        ]
+        "dev": ["black", "pytest-cov", "pytest", "coverage>=5.0.3",]
     },
     python_requires=">=3.6",
     url="https://github.com/adamltyson/slurmio",
