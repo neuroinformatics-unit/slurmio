@@ -75,7 +75,7 @@ class SlurmJobParameters:
         """
         parts = self.sacct_object.AllocTRES.split(",")
         memory = int(parts[1].split("=")[1])
-        return memory * 10 ** 6
+        return memory * 10**6
 
     @property
     def allocated_nodes(self):
