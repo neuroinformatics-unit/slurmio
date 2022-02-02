@@ -75,7 +75,7 @@ class SlurmJobParameters:
         """
         parts = self.sacct_object.AllocTRES.split(",")
         memory = int(parts[1].split("=")[1])
-        return memory * 10 ** 6
+        return memory * 10**6
 
     @property
     def allocated_nodes(self):
@@ -129,7 +129,8 @@ class SlurmJobParameters:
     def job_name(self):
         """
         Returns the job name given to slurm
-        :param sacct_object: Object with properties matching the output of sacct.
+        :param sacct_object: Object with properties matching
+        the output of sacct.
         :return: Job Name
         """
         return self.sacct_object.JobName

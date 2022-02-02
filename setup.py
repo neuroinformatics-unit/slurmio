@@ -3,12 +3,18 @@ import setuptools
 
 setuptools.setup(
     name="slurmio",
-    version="0.0.5",
+    version="0.0.6-rc0",
     author="Adam Tyson",
     author_email="adam.tyson@ucl.ac.uk",
     description="Python tools to interface with slurm",
     extras_require={
-        "dev": ["black", "pytest-cov", "pytest", "coverage>=5.0.3",]
+        "dev": [
+            "black",
+            "flake8",
+            "pytest-cov",
+            "pytest",
+            "coverage>=5.0.3",
+        ]
     },
     python_requires=">=3.6",
     url="https://github.com/adamltyson/slurmio",
