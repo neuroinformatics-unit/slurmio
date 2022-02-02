@@ -10,7 +10,7 @@ setuptools.setup(
     extras_require={
         "dev": [
             "black",
-            "flake",
+            "flake8",
             "pytest-cov",
             "pytest",
             "coverage>=5.0.3",
