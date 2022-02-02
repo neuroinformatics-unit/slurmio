@@ -12,7 +12,7 @@ setuptools.setup(
     },
     python_requires=">=3.6",
     url="https://github.com/adamltyson/slurmio",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude=("tests",)),
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Operating System :: POSIX :: Linux",
