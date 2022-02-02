@@ -6,6 +6,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Cython
+*.c
+*.cpp
+
 # C extensions
 *.so
 
@@ -113,3 +117,5 @@ venv.bak/
 .idea/
 
 *.~lock.*
+
+pip-wheel-metadata/

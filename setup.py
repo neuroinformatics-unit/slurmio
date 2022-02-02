@@ -8,7 +8,12 @@ setuptools.setup(
     author_email="adam.tyson@ucl.ac.uk",
     description="Python tools to interface with slurm",
     extras_require={
-        "dev": ["black", "pytest-cov", "pytest", "coverage>=5.0.3",]
+        "dev": [
+            "black",
+            "pytest-cov",
+            "pytest",
+            "coverage>=5.0.3",
+        ]
     },
     python_requires=">=3.6",
     url="https://github.com/adamltyson/slurmio",

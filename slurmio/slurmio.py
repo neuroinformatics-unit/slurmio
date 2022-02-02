@@ -129,7 +129,8 @@ class SlurmJobParameters:
     def job_name(self):
         """
         Returns the job name given to slurm
-        :param sacct_object: Object with properties matching the output of sacct.
+        :param sacct_object: Object with properties matching
+        the output of sacct.
         :return: Job Name
         """
         return self.sacct_object.JobName
