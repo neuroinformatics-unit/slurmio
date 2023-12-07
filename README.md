@@ -31,19 +31,20 @@ pip install .
 ### Usage
 ```bash
 >>> from slurmio import SlurmJobParameters
->>> SlurmJobParameters().job_id
+>>> slurm_parameters = SlurmJobParameters()
+>>> slurm_parameters.job_id
 994986
->>> SlurmJobParameters().job_name
+>>> slurm_parameters.job_name
 'bash'
->>> SlurmJobParameters().requested_cores
+>>> slurm_parameters.requested_cores
 10
->>> SlurmJobParameters().allocated_cores
+>>> slurm_parameters.allocated_cores
 24
->>> SlurmJobParameters().requested_memory
+>>> slurm_parameters.requested_memory
 10240 # in bytes
->>> SlurmJobParameters().allocated_memory
+>>> slurm_parameters.allocated_memory
 24576000000 # in bytes
->>> SlurmJobParameters().requested_nodes
+>>> slurm_parameters.requested_nodes
 1
->>> SlurmJobParameters().allocated_nodes
+>>> slurm_parameters.allocated_nodes
 1
