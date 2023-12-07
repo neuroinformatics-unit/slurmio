@@ -20,3 +20,7 @@ def test_slurm_environment():
     assert 1 == params.allocated_nodes
     assert 18000000 == params.requested_memory
     assert 18000000 == params.allocated_memory
+
+    assert "12" == params._trackable_resources["cpu"]
+    assert "18G" == params._trackable_resources["mem"]
+    assert "1" == params._trackable_resources["node"]
