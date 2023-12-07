@@ -1,1 +1,9 @@
-__version__ = "0.0.6"
+from importlib.metadata import PackageNotFoundError, version
+
+try:
+    __version__ = version("slurmio")
+except PackageNotFoundError:
+    # package is not installed
+    pass
+
+from slurmio.slurmio import SlurmJobParameters, SacctWrapper

@@ -1,14 +1,15 @@
 import os
-from slurmio import slurmio
+
+from slurmio import SacctWrapper, SlurmJobParameters
 
 sacct_file = os.path.join("tests", "data", "sacct.txt")
 
 
 def test_slurm_environment():
     with open(sacct_file, "r") as file:
-        sacct_ob = slurmio.SacctWrapper(file)
+        sacct_ob = SacctWrapper(file)
 
-    params = slurmio.SlurmJobParameters(sacct_ob)
+    params = SlurmJobParameters(sacct_ob)
     assert 12 == params.requested_cores
     assert 168000 == params.requested_memory
     assert 1 == params.requested_nodes
