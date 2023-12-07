@@ -1,4 +1,5 @@
 import os
+
 from slurmio import slurmio
 
 sacct_file = os.path.join("tests", "data", "sacct.txt")

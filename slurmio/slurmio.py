@@ -7,8 +7,8 @@ etc.
 
 """
 
-import re
 import os
+import re
 
 
 class SacctWrapper:

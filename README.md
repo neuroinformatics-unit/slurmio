@@ -7,12 +7,27 @@
 [![Coverage Status](https://coveralls.io/repos/github/adamltyson/slurmio/badge.svg?branch=main)](https://coveralls.io/github/instituteofcancerresearch/slurmio?branch=main)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black)
 # slurmio
-Python tools to interface with slurm.
+Python tools to read [SLURM](https://slurm.schedmd.com/documentation.html) job
+parameters.
 
-### Install with:
+### Installation
+Pip
 ```bash
 pip install slurmio
 ```
+
+Conda
+```bash
+conda install -c conda-forge slurmio
+```
+
+From source:
+```bash
+git clone https://github.com/neuroinformatics-unit/slurmio
+cd slurmio
+pip install .
+```
+
 
 ### Usage
 ```bash
