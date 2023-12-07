@@ -30,7 +30,7 @@ pip install .
 
 ### Usage
 ```bash
->>> from slurmio.slurmio import SlurmJobParameters
+>>> from slurmio import SlurmJobParameters
 >>> SlurmJobParameters().job_id
 994986
 >>> SlurmJobParameters().job_name
