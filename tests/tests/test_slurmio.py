@@ -1,6 +1,6 @@
 import os
 
-from slurmio import SlurmJobParameters, SacctWrapper
+from slurmio import SacctWrapper, SlurmJobParameters
 
 sacct_file = os.path.join("tests", "data", "sacct.txt")
 
