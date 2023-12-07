@@ -6,4 +6,4 @@ except PackageNotFoundError:
     # package is not installed
     pass
 
-from slurmio.slurmio import SlurmJobParameters
+from slurmio.slurmio import SlurmJobParameters, SacctWrapper
