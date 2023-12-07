@@ -3,6 +3,7 @@
 [![Downloads](https://pepy.tech/badge/slurmio)](https://pepy.tech/project/slurmio)
 [![Development Status](https://img.shields.io/pypi/status/slurmio.svg)](https://github.com/neuroinformatics-unit/slurmio)
 [![Tests](https://img.shields.io/github/workflow/status/neuroinformatics-unit/slurmio/tests)](https://github.com/neuroinformatics-unit/slurmio/actions)
+[![codecov](https://codecov.io/gh/neuroinformatics-unit/slurmio/graph/badge.svg?token=utApXQgGMa)](https://codecov.io/gh/neuroinformatics-unit/slurmio)
 
 # slurmio
 Python tools to read [SLURM](https://slurm.schedmd.com/documentation.html) job
