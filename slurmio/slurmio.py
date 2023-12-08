@@ -11,6 +11,14 @@ import os
 import re
 
 
+class SlurmEnvironmentError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return str(self.message)
+
+
 class SacctWrapper:
     """
     Takes the output of the SLURM "sacct" command (via pipe or file) and
@@ -42,12 +50,21 @@ def sacct():
 
     :return: SacctWrapper object, with attributes based on the output of sacct
     """
+
+    try:
+        # if in slurm environment
+        os.environ["SLURM_JOB_ID"]
     with os.popen(
         "sacct -j $SLURM_JOB_ID --format=jobid,partition,"
         "jobname,reqmem,reqcpus,alloccpus,"
         "reqnodes,allocnodes,reqtres,alloctres --parsable2"
     ) as file:
         return SacctWrapper(file)
+    except KeyError:
+        raise SlurmEnvironmentError(
+            "'SLURM_JOB_ID' cannot be found in the environment. "
+            "Please ensure you are running 'slurmio' in a SLURM job."
+        )
 
 
 class SlurmJobParameters:
