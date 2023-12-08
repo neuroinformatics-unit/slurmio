@@ -1,6 +1,8 @@
 import os
 
-from slurmio import SacctWrapper, SlurmJobParameters
+import pytest
+
+from slurmio import SacctWrapper, SlurmEnvironmentError, SlurmJobParameters
 
 sacct_file = os.path.join("tests", "data", "sacct.txt")
 
@@ -18,3 +20,8 @@ def test_slurm_environment():
     assert 1 == params.allocated_nodes
     assert "test_slurm_job" == params.job_name
     assert 606501 == params.job_id
+
+
+def test_non_slurm_environment():
+    with pytest.raises(SlurmEnvironmentError):
+        SlurmJobParameters()
