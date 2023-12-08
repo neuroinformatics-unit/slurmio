@@ -36,15 +36,17 @@ pip install .
 994986
 >>> slurm_parameters.job_name
 'bash'
+>>> slurm_parameters.partition
+'cpu'
 >>> slurm_parameters.requested_cores
 10
 >>> slurm_parameters.allocated_cores
-24
+10
+>>> slurm_parameters.requested_nodes
+10
+>>> slurm_parameters.allocated_nodes
+10
 >>> slurm_parameters.requested_memory
 10240 # in bytes
 >>> slurm_parameters.allocated_memory
-24576000000 # in bytes
->>> slurm_parameters.requested_nodes
-1
->>> slurm_parameters.allocated_nodes
-1
+10240 # in bytes

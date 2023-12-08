@@ -2,7 +2,7 @@
 slurmio
 ===============
 
-Wrappers around slurm command line utilities for querying available resources
+Wrappers around SLURM command line utilities for querying available resources
 etc.
 
 """
@@ -21,7 +21,7 @@ class SlurmEnvironmentError(Exception):
 
 class SacctWrapper:
     """
-    Takes the output of the slurm "sacct" command (via pipe or file) and
+    Takes the output of the SLURM "sacct" command (via pipe or file) and
     sets the attributes based on the output
     """
 
@@ -45,15 +45,20 @@ def sacct():
     Wrapper around the slurm "sacct" command. Returns an object, and each
     property is the (unformatted) value according to sacct.
 
-    Would also work with .e.g:
+    Also works with .e.g:
     # with open("/home/Desktop/sacct.txt", "r") as file:
 
     :return: SacctWrapper object, with attributes based on the output of sacct
     """
+
     try:
         # if in slurm environment
         os.environ["SLURM_JOB_ID"]
-        with os.popen("sacct -j $SLURM_JOB_ID -l --parsable2") as file:
+        with os.popen(
+            "sacct -j $SLURM_JOB_ID --format=jobid,partition,"
+            "jobname,reqmem,reqcpus,alloccpus,"
+            "reqnodes,allocnodes,reqtres,alloctres --parsable2"
+        ) as file:
             return SacctWrapper(file)
     except KeyError:
         raise SlurmEnvironmentError(
@@ -67,8 +72,6 @@ class SlurmJobParameters:
     Convenience class to request slurm job parameters
     """
 
-    # TODO: add "available_memory" property
-
     def __init__(self, sacct_object=None):
         if sacct_object is None:
             self.sacct_object = sacct()
@@ -76,85 +79,93 @@ class SlurmJobParameters:
             self.sacct_object = sacct_object
 
     @property
-    def allocated_cores(self):
+    def job_id(self) -> int:
         """
-        Returns the amount of cores allocated by slurm (not requested).
+        Returns the job ID
+        :return: Job ID
+        """
+        return int(self.sacct_object.JobID)
+
+    @property
+    def job_name(self) -> str:
+        """
+        Returns the job name
+        :return: Job Name
+        """
+        return self.sacct_object.JobName
+
+    @property
+    def partition(self) -> str:
+        """
+        Returns the partition name
+        :return: Partition name
+        """
+        return self.sacct_object.Partition
+
+    @property
+    def requested_cores(self) -> int:
+        """
+        Returns the number of cores requested
+        :return: Number of cores
+        """
+        return int(self.sacct_object.ReqCPUS)
+
+    @property
+    def allocated_cores(self) -> int:
+        """
+        Returns the number of cores allocated
         :return: Number of cores
         """
         return int(self.sacct_object.AllocCPUS)
 
     @property
-    def allocated_memory(self):
+    def requested_nodes(self) -> int:
         """
-        Returns the amount of memory allocated by slurm (not requested). In MB.
+        Returns the number of nodes requested
+        :return: Number of nodes
+        """
+        return int(self.sacct_object.ReqNodes)
+
+    @property
+    def allocated_nodes(self) -> int:
+        """
+        Returns the number of nodes allocated
+        :return: Number of nodes
+        """
+        return int(self.sacct_object.AllocNodes)
+
+    @property
+    def requested_memory(self) -> int:
+        """
+        Returns the amount of memory requested
         :return: Memory in bytes
         """
-        parts = self.sacct_object.AllocTRES.split(",")
-        memory = int(parts[1].split("=")[1])
-        return memory * 10**6
+
+        return convert_mem_to_bytes(self.sacct_object.ReqMem)
 
     @property
-    def allocated_nodes(self):
+    def allocated_memory(self) -> int:
         """
-        Returns the number of nodes allocated by slurm (not requested).
-        :return: Number of nodes
+        Returns the amount of memory allocated
+        :return: Memory in bytes
         """
-        parts = self.sacct_object.AllocTRES.split(",")
-        num_nodes = int(parts[2].split("=")[1])
-        return num_nodes
+        return convert_mem_to_bytes(self._trackable_resources["mem"])
 
     @property
-    def requested_cores(self):
+    def _trackable_resources(self) -> dict:
         """
-        Returns the amount of cores requested from slurm.
-        :return: Number of cores
+        Returns Trackable resources. These are the resources allocated
+        to the job/step after the job started running.
+        For pending jobs this should be blank.
+        :return: Dictionary of trackable resources
         """
-        parts = self.sacct_object.ReqTRES.split(",")
-        memory = int(parts[0].split("=")[1])
-        return memory
+        return dict(
+            item.split("=") for item in self.sacct_object.AllocTRES.split(",")
+        )
 
-    @property
-    def requested_memory(self):
-        """
-        Returns the amount of memory requested from slurm.. In MB.
-        :return: Memory in MB
-        """
-        parts = self.sacct_object.ReqTRES.split(",")
-        memory = int(parts[1].split("=")[1])
-        return memory
 
-    @property
-    def requested_nodes(self):
-        """
-        Returns the number of nodes requested from slurm.
-        :return: Number of nodes
-        """
-        parts = self.sacct_object.ReqTRES.split(",")
-        num_nodes = int(parts[2].split("=")[1])
-        return num_nodes
-
-    @property
-    def get_job_name(self):
-        """
-        Returns the job name given to slurm
-        :return: Job Name
-        """
-        return self.sacct_object.JobName
-
-    @property
-    def job_name(self):
-        """
-        Returns the job name given to slurm
-        :param sacct_object: Object with properties matching
-        the output of sacct.
-        :return: Job Name
-        """
-        return self.sacct_object.JobName
-
-    @property
-    def job_id(self):
-        """
-        Returns the job name given to slurm
-        :return: Job ID
-        """
-        return int(self.sacct_object.JobID)
+def convert_mem_to_bytes(s):
+    if s.endswith("G"):
+        return int(s[:-1]) * 10**6
+    else:
+        return int(s)
