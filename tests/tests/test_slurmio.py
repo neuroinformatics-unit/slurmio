@@ -1,8 +1,8 @@
-import os
+from pathlib import Path
 
 from slurmio import SacctWrapper, SlurmJobParameters
 
-sacct_file = os.path.join("tests", "data", "sacct.txt")
+sacct_file = Path(__file__).parent.parent / "data" / "sacct.txt"
 
 
 def test_slurm_environment():
