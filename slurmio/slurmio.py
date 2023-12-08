@@ -54,12 +54,12 @@ def sacct():
     try:
         # if in slurm environment
         os.environ["SLURM_JOB_ID"]
-    with os.popen(
-        "sacct -j $SLURM_JOB_ID --format=jobid,partition,"
-        "jobname,reqmem,reqcpus,alloccpus,"
-        "reqnodes,allocnodes,reqtres,alloctres --parsable2"
-    ) as file:
-        return SacctWrapper(file)
+        with os.popen(
+            "sacct -j $SLURM_JOB_ID --format=jobid,partition,"
+            "jobname,reqmem,reqcpus,alloccpus,"
+            "reqnodes,allocnodes,reqtres,alloctres --parsable2"
+        ) as file:
+            return SacctWrapper(file)
     except KeyError:
         raise SlurmEnvironmentError(
             "'SLURM_JOB_ID' cannot be found in the environment. "
