@@ -166,6 +166,6 @@ class SlurmJobParameters:
 
 def convert_mem_to_bytes(s):
     if s.endswith("G"):
-        return int(s[:-1]) * 10**9
+        return int(s[:-1]) * 10**6
     else:
         return int(s)
